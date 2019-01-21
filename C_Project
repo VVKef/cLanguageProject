@@ -40,21 +40,21 @@ int main (){
 	int sum=0;
 	int loginCounter=0;	
 	while(strcmp(potential,"EXIT")!=0){
-	printf("Kalws orisate sthn Arxikh Othoni.\n");
-	printf("Eisagete 'Register' h 'Login' gia Eggrafh h Sundesh,antistoixa.\n");
+	printf("Welcome to the Main Screen.\n");
+	printf("Insert 'Register' h 'Login' for Register or Login,antistoixa.\n");
 	scanf("%s",&choice);
-	while((strcmp(choice,"Register")!=0) && (strcmp(choice,"Login")!=0)){ 	//Elegxos egkurothtas.
-		printf("Dwste mia apo tis parapanw epiloges.\n");
+	while((strcmp(choice,"Register")!=0) && (strcmp(choice,"Login")!=0)){ 	//Validity Check.
+		printf("Please insert one of the above choices.\n");
 		scanf("%s",&choice);
 	}
 	for(i=0;i<=sum;i++){
 		if((strcmp(choice,"Register")==0)){
-			eggrafh(Users,i,&sum); //Kalw thn Eggrafh.
+			eggrafh(Users,i,&sum); //Call Eggrafh function.
 			loginCounter=loginCounter+1;
-			printf("Eisagete 'Register' h 'Login' gia Eggrafh h Sundesh,antistoixa.\n");
+			printf("Insert 'Register' h 'Login' for Register or Login,antistoixa.\n");
 			scanf("%s",&choice);
 			while((strcmp(choice,"Register")!=0) && (strcmp(choice,"Login")!=0)){
-				printf("Dwste mia apo tis parapanw epiloges.\n");
+				printf("Please insert one of the above choices.\n");
 				scanf("%s",&choice);
 			}
 		}
@@ -62,18 +62,18 @@ int main (){
 		if((strcmp(choice,"Login")==0)){
 			loginCounter=loginCounter+1;
 			if (loginCounter==1){
-				printf("Den exete kanei eggrafh.\n");
-				printf("Eisagete 'Register' gia Eggrafh.\n");
+				printf("You are not Registered yet.\n");
+				printf("Insert 'Register' to continue.\n");
 				scanf("%s",&choice);
 				while((strcmp(choice,"Register")!=0)){
-					printf("Dwste 'Register' gia Eggrafh.\n");
+					printf("Insert 'Register' to continue.\n");
 					scanf("%s",&choice);
 				}
 				for(i=0;i<=sum;i++){
 					if((strcmp(choice,"Register")==0)){
-						eggrafh(Users,i,&sum); //Kalw thn Eggrafh.
+						eggrafh(Users,i,&sum); //Call Eggrafh function.
 						loginCounter=loginCounter+1;
-						printf("Eisagete 'Register' h 'Login' gia Eggrafh h Sundesh,antistoixa.\n");
+						printf("Insert 'Register' h 'Login' for Register or Login,antistoixa.\n");
 						scanf("%s",&choice);
 					}
 				}
@@ -83,35 +83,35 @@ int main (){
 				}
 			}
 		}
-		printf("Dwste username kai password gia na sundetheite.\n"); //Arxizei to login.
+		printf("Insert username and password to Login.\n"); //Login begins.
 		scanf("%s%s",&surname,&password);
 		for(j=0;j<=sum;j++){
 			if(strcmp(surname,Users[j].surname)==0 && strcmp(password,Users[j].password)==0){
 				while(strcmp(potential,"EXIT")!=0){
-					printf("Kalws irthate stin othoni foithth.\n");
-					printf("Dwste ena apo parakatw lektika.\n");
+					printf("Welcome at student screen.\n");
+					printf("Type on of the following\n");
 					printf("Modify\tView\tSearch\tSort\tEXIT\n\n");
 					scanf("%s",&potential);
 					while((strcmp(potential,"Modify")!=0) && (strcmp(potential,"View")!=0) && (strcmp(potential,"Search")!=0) && (strcmp(potential,"Sort")!=0) && (strcmp(potential,"EXIT")!=0)){ //Elegxos egkurothtas gia potential.
-						printf("Dwsate lanthasmeno lektiko.Prospathiste xana.\n");
+						printf("Inserted wrong data.Try again.\n");
 						printf("\tModify\tView\tSearch\tSort\tEXIT\n\n");
 						scanf("%s",&potential);
 					}
 					if(strcmp(potential,"Modify")==0){
 						printf("%s %s %d %d %d %d\n",Users[j].surname,Users[j].name,Users[j].age,Users[j].gradeC,Users[j].gradeJava,Users[j].gradeCplusplus); //Emfanizw ta stoixeia prin tis dunatothtes.
-						modify(Users,j); //Kalw thn Modify.
+						modify(Users,j); //Call Modify Function.
 						
 					}
 					else if(strcmp(potential,"View")==0){
-						view(Users,&sum); // Kalw thn View.
+						view(Users,&sum); // Call View Function.
 						
 					}
 					else if(strcmp(potential,"Search")==0){
-						search(Users,j,&sum); //Kalw thn Search.
+						search(Users,j,&sum); //Call Search Function.
 						
 					}
 					else if(strcmp(potential,"Sort")==0){
-						sort(Users,&sum); //Kalw thn Sort.
+						sort(Users,&sum); //Call Sort Function.
 					}
 				}
 				for(j=0;j<=7;j++){
@@ -125,34 +125,34 @@ int main (){
 void eggrafh(struct A *Users,int i,int *sumPtr){
 	float average;
 	int flag=0;
-	printf("Kalws irthate sto stadio ths eggrafhs.\n");
-	printf("Dwste to epwnumo\n");
+	printf("Welcome to the Register stage.\n");
+	printf("Type surname.\n");
 	scanf("%s",Users[i].surname);
 	flag=checkNames(Users[i].surname,Users,i);
 	while(flag==0){
-		printf("Dwste allo epwnumo\n");
+		printf("Try another surname.\n");
 		scanf("%s",Users[i].surname);
-		flag=checkNames(Users[i].surname,Users,i);	//Sthn flag paei 0 h 1 gia to ean uparxei to onoma.			
+		flag=checkNames(Users[i].surname,Users,i);	//Flag goes like 0 - 1 if there is the specific surname or not.			
 	}
-	printf("Dwste to onoma\n");
+	printf("Type name.\n");
 	scanf("%s",Users[i].name);
-	printf("Dwste tin hlikia\n");
+	printf("Type age.\n");
 	scanf("%d",&(Users[i].age));
-	printf("Dwste ton vathmo C\n");
+	printf("Type grade in C.\n");
 	scanf("%d",&(Users[i].gradeC));
-	printf("Dwste ton vathmo Java\n");
+	printf("Type grade in Java\n");
 	scanf("%d",&(Users[i].gradeJava));
-	printf("Dwste ton vathmo C++\n");
+	printf("Type grade in C++\n");
 	scanf("%d",&(Users[i].gradeCplusplus));
-	average=(Users[i].gradeC+Users[i].gradeJava+Users[i].gradeCplusplus)/3.0; //Upologismos Mesou Orou.
+	average=(Users[i].gradeC+Users[i].gradeJava+Users[i].gradeCplusplus)/3.0; //Average calculation.
 	Users[i].average=average;
-	createPass(Users[i].surname,Users[i].password); // Dhmiourgia password.
+	createPass(Users[i].surname,Users[i].password); // Password create.
 	(*sumPtr)=(*sumPtr)+1;
 }
 
-int checkNames(char *surname,struct A *Users,int position){ //To position einai to i apo thn Eggrafh.
+int checkNames(char *surname,struct A *Users,int position){ //Position is the i of the register function.
 	int i;
-	int flag=1; // An einai lathos gurnaei 0 an einai swsto gurnaei 1.
+	int flag=1; // If wrong 0 given back ,else 1 given back.
 	for(i=0;i<MAXSIZE;i++){
 		if(i==position){
 			continue;
@@ -166,7 +166,7 @@ int checkNames(char *surname,struct A *Users,int position){ //To position einai 
 	return flag;
 }
 
-void createPass(char *surname,char *password){ //Pairnei to username k epistrefei to antistoixo password.
+void createPass(char *surname,char *password){ //Takes username and returns password.
 	int i;
 	for(i=0;i<sizeof(surname);i++){
 		if((i % 2)==0){
@@ -185,37 +185,37 @@ void createPass(char *surname,char *password){ //Pairnei to username k epistrefe
 
 void modify(struct A *Users,int i){
 	int potentialNo;
-	printf("Poio thes na allaxeis?\n");
+	printf("Which one are you willing to change?\n");
 	scanf("%d",&potentialNo);
 	if(potentialNo==1){
-		printf("Dwste to neo epwnumo.\n");
+		printf("Type new surname\n");
 		scanf("%s",Users[i].surname);
-		printf("To neo epwnumo einai %s\n",Users[i].surname);
+		printf("New surname is %s\n",Users[i].surname);
 	}
 	else if(potentialNo==2){
-		printf("Dwste to neo onoma.\n");
+		printf("Type new name\n");
 		scanf("%s",Users[i].name);
-		printf("To neo onoma einai %s\n",Users[i].name);
+		printf("New name is %s\n",Users[i].name);
 	}
 	else if(potentialNo==3){
-		printf("Dwste th nea hlikia.\n");
+		printf("Type new age\n");
 		scanf("%d",&Users[i].age);
-		printf("H nea hlikia einai %d\n",Users[i].age);	
+		printf("New age is %d\n",Users[i].age);	
 	}
 	else if(potentialNo==4){
-		printf("Dwste to neo vathmo sthn C.\n");
+		printf("Type new grade in C\n");
 		scanf("%d",&Users[i].gradeC);
-		printf("O neos vathmos sthn C einai %d\n",Users[i].gradeC);	
+		printf("New grade in C is %d\n",Users[i].gradeC);	
 	}
 	else if(potentialNo==5){
-		printf("Dwste to neo vathmo sthn Java.\n");
+		printf("Type new grade in Java.\n");
 		scanf("%d",&Users[i].gradeJava);	
-		printf("O neos vathmos sthn Java einai %d\n",Users[i].gradeJava);
+		printf("New grade in Java is  %d\n",Users[i].gradeJava);
 	}
 	else if(potentialNo==6){
-		printf("Dwste to neo vathmo sthn C++.\n");
+		printf("Type new grade in C++\n");
 		scanf("%d",&Users[i].gradeCplusplus);
-		printf("O neos vathmos sthn C++ einai %d\n",Users[i].gradeCplusplus);	
+		printf("New grade in C++ is %d\n",Users[i].gradeCplusplus);	
 	}
 }
 
@@ -224,12 +224,12 @@ void view(struct A *Users,int *sumPtr){
 	for(i=0;i<=*sumPtr;i++){
 		printf("%s %s %d %.2f\n",Users[i].surname,Users[i].name,Users[i].age,Users[i].average2);
 	}
-	printf("To plithos twn eggegrammenwn foithtwn einai : %d\n",*sumPtr);
+	printf("The sum of the registered students is %d\n",*sumPtr);
 }
 
 void search(struct A *Users,int j,int *sumPtr){
 	char joker;
-	printf("Dwse to arxiko gramma tou epwnumou pou psaxneis kai tha sou emfanisw tous\nen logw foithtes pou 3ekinoun \nme to sugkekrimeno gramma,\nkathws kai ta stoixeia tous.\n");
+	printf("Give the first letter of the surname and i will find \nthe specific students \nstarting with this letter\nand his/her data.\n");
 	scanf(" %c",&joker);
 	for(j=0;j<=*sumPtr;j++){
 		if(joker==Users[j].surname[0]){
@@ -238,7 +238,7 @@ void search(struct A *Users,int j,int *sumPtr){
 	}
 }
 
-void sort(struct A *Users,int *sumPtr){ //Ta3inomhsh se Fthinousa.
+void sort(struct A *Users,int *sumPtr){ //Sort in descending order
 	int i;
 	int j;
 	int temp;
@@ -249,20 +249,20 @@ void sort(struct A *Users,int *sumPtr){ //Ta3inomhsh se Fthinousa.
 			}
 		}
 	}
-	printf("Katanemhmenoi oi mesoi oroi,me ta antistoixa onomata einai ws e3hs.\n");
+	printf("Sorted averages,with their names are :\n");
 	for(j=0;j<=*sumPtr;j++){
 		printf("%s %s %.2f\n",Users[j].surname,Users[j].name,Users[j].average);
 	}	
 }
 
-void swap(struct A *Users,int x,int y){ //Dhmiourgei temp (Voithitika sthn Sort gia thn antimetathesi.)
+void swap(struct A *Users,int x,int y){ //Creates temp (Helping sort function for swapping.)
 	struct A temp;
     structCopy(Users[x],&temp);
     structCopy(Users[y],&Users[x]);
     structCopy(temp,&Users[y]);
 }
 
-void structCopy(struct A UsersA,struct A *UsersB){ //Antigrafei ta dedomena A tou B.
+void structCopy(struct A UsersA,struct A *UsersB){ //Copies A data to B.
 	strcpy((*UsersB).password,UsersA.password);
 	strcpy((*UsersB).surname,UsersA.surname);
 	strcpy((*UsersB).name,UsersA.name);
